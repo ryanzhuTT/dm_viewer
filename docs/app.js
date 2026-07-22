@@ -281,7 +281,8 @@ function loadCSV(url) {
 async function probeArchitectures(test) {
     const available = [];
     const probes = KNOWN_ARCHITECTURES.map(async (arch) => {
-        const url = `${DATA_BASE_PATH}/${arch}/${test.csv}`;
+        const csvFile = GITHUB_PAGES ? encodeURIComponent(test.csv) : test.csv;
+        const url = `${DATA_BASE_PATH}/${arch}/${csvFile}`;
         try {
             const resp = await fetch(url);
             if (resp.ok) available.push(arch);
@@ -748,7 +749,8 @@ async function loadAndRender() {
     const test = state.selectedTest;
     if (!test || !state.selectedArch) return;
 
-    const url = `${DATA_BASE_PATH}/${state.selectedArch}/${test.csv}`;
+    const csvFile = GITHUB_PAGES ? encodeURIComponent(test.csv) : test.csv;
+    const url = `${DATA_BASE_PATH}/${state.selectedArch}/${csvFile}`;
 
     try {
         const rows = await loadCSV(url);
