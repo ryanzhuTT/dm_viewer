@@ -8,7 +8,11 @@ const GITHUB_YAML_BRANCH = "ryanzhu/dm-web";
 const GITHUB_RAW_BASE =
     `https://raw.githubusercontent.com/tenstorrent/tt-metal/${GITHUB_YAML_BRANCH}/tests/tt_metal/tt_metal/data_movement`;
 
-const DATA_BASE_PATH = "../data";
+const GITHUB_PAGES = true;
+const GITHUB_PAGES_DATA_BASE =
+    "https://raw.githubusercontent.com/ryanzhuTT/dm_viewer/main/data";
+
+const DATA_BASE_PATH = GITHUB_PAGES ? GITHUB_PAGES_DATA_BASE : "../data";
 const KNOWN_ARCHITECTURES = ["blackhole", "wormhole_b0"];
 const LOCAL_GROUPS_YAML_PATH = "../python/test_mappings/web_viewer_groups.yaml";
 const LOCAL_TEST_INFO_YAML_PATH = "../python/test_mappings/test_information.yaml";
