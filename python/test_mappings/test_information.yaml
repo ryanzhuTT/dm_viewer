@@ -149,7 +149,6 @@ tests:
   16:
     name: "Loopback Packet Sizes"
     directory: "loopback"
-    web_viewer_name: "Packet Sizes"
 
   17:
     name: "Reshard Hardcoded Small"
@@ -268,6 +267,7 @@ tests:
   44:
     name: "Loopback Packet Sizes 2.0"
     directory: "loopback"
+    web_viewer_name: "Packet Sizes"
 
   45:
     name: "Loopback Directed Ideal 2.0"
@@ -817,7 +817,6 @@ tests:
   321:
     name: "All from All Packet Sizes"
     directory: "all_from_all"
-    web_viewer_name: "Packet Sizes"
     memory_type: "l1"
     mechanism: "unicast"
     pattern: "all_from_all"
@@ -853,6 +852,7 @@ tests:
   329:
     name: "All from All Packet Sizes 2.0"
     directory: "all_from_all"
+    web_viewer_name: "Packet Sizes"
     memory_type: "l1"
     mechanism: "unicast"
     pattern: "all_from_all"
@@ -1341,6 +1341,15 @@ tests:
   911:
     name: "Quasar IDMA - 1D Strided"
     directory: "quasar_examples"
+
+  912:
+    name: "Quasar Cache Write Sizes"
+    comment: |
+      Compares single-DM-core write performance to Tensix L1 via the uncached
+      port (+4MB alias) versus cacheable writes followed by flush_l2_cache_range.
+      Swept over total data size (1B..2KB). Uncached avoids flush cost but pays
+      full TL1 latency per access; cached+flush amortizes writes but pays
+      ceil(N/64) line flushes.
 
   1012:
     name: "1D Matmul Test 1012 - 2x2 K=2 Subblock K Sweep"
