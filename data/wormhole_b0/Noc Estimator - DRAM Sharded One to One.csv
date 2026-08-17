@@ -1,4 +1,4 @@
-Transaction Size (bytes),Number of Transactions,Architecture,RISC-V Processor,Run Host ID,Mechanism,Pattern,Number of subordinates,Memory type,Stateful,Same axis,Loopback,NoC Index,Latency (cycles),Bandwidth (bytes/cycle)
+Transaction Size (bytes),Number of Transactions,Architecture,RISC-V Processor,Run Host ID,Memory type,Mechanism,Pattern,Same axis,Stateful,Loopback,Number of subordinates,NoC Index,Latency (cycles),Bandwidth (bytes/cycle)
 32,1,wormhole_b0,riscv_0,368640,DRAM Sharded,unicast,one_to_one,False,False,False,0,0,413.0,0.0774818401937046
 64,1,wormhole_b0,riscv_0,369664,DRAM Sharded,unicast,one_to_one,False,False,False,0,0,413.0,0.1549636803874092
 128,1,wormhole_b0,riscv_0,370688,DRAM Sharded,unicast,one_to_one,False,False,False,0,0,419.0,0.3054892601431981
