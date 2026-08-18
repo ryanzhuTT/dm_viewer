@@ -1,23 +1,15 @@
 // SPDX-FileCopyrightText: 2026 Tenstorrent USA, Inc.
-
 // SPDX-License-Identifier: Apache-2.0
 
 // ── Configuration ──────────────────────────────────────────────────
 
-const FETCH_YAML_FROM_GITHUB = false;
 const GITHUB_YAML_BRANCH = "ryanzhu/dm-web";
 const GITHUB_RAW_BASE =
     `https://raw.githubusercontent.com/tenstorrent/tt-metal/${GITHUB_YAML_BRANCH}/tests/tt_metal/tt_metal/data_movement`;
 
-// for testing github pages deployment, currently done on my personal repo
-const GITHUB_PAGES = false;
-const GITHUB_PAGES_DATA_BASE =
+const DATA_BASE_PATH =
     "https://raw.githubusercontent.com/ryanzhuTT/dm_viewer/main/data";
-
-const DATA_BASE_PATH = GITHUB_PAGES ? GITHUB_PAGES_DATA_BASE : "../data";
 const KNOWN_ARCHITECTURES = ["blackhole", "wormhole_b0"];
-const LOCAL_GROUPS_YAML_PATH = "../python/test_mappings/web_viewer_groups.yaml";
-const LOCAL_TEST_INFO_YAML_PATH = "../python/test_mappings/test_information.yaml";
 const GITHUB_BASE =
     "https://github.com/tenstorrent/tt-metal/blob/main/tests/tt_metal/tt_metal/data_movement";
 
@@ -93,12 +85,8 @@ let state = {
 // ── YAML Loading ──────────────────────────────────────────────────
 
 async function loadYamlConfig() {
-    const groupsPath = FETCH_YAML_FROM_GITHUB
-        ? `${GITHUB_RAW_BASE}/python/test_mappings/web_viewer_groups.yaml`
-        : LOCAL_GROUPS_YAML_PATH;
-    const testInfoPath = FETCH_YAML_FROM_GITHUB
-        ? `${GITHUB_RAW_BASE}/python/test_mappings/test_information.yaml`
-        : LOCAL_TEST_INFO_YAML_PATH;
+    const groupsPath = `${GITHUB_RAW_BASE}/python/test_mappings/web_viewer_groups.yaml`;
+    const testInfoPath = `${GITHUB_RAW_BASE}/python/test_mappings/test_information.yaml`;
 
     const [groupsResp, testInfoResp] = await Promise.all([
         fetch(groupsPath).catch(() => null),
@@ -322,7 +310,7 @@ function loadCSV(url) {
 async function probeArchitectures(test) {
     const available = [];
     const probes = KNOWN_ARCHITECTURES.map(async (arch) => {
-        const csvFile = GITHUB_PAGES ? encodeURIComponent(test.csv) : test.csv;
+        const csvFile = encodeURIComponent(test.csv);
         const url = `${DATA_BASE_PATH}/${arch}/${csvFile}`;
         try {
             const resp = await fetch(url);
@@ -863,7 +851,7 @@ async function loadAndRender() {
     const test = state.selectedTest;
     if (!test || !state.selectedArch) return;
 
-    const csvFile = GITHUB_PAGES ? encodeURIComponent(test.csv) : test.csv;
+    const csvFile = encodeURIComponent(test.csv)
     const url = `${DATA_BASE_PATH}/${state.selectedArch}/${csvFile}`;
 
     try {

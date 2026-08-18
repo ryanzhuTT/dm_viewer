@@ -46,7 +46,7 @@ universal:
       a: >
         Transaction size is the number of bytes sent in a single noc_async_read
         or noc_async_write call (There are some exceptions which should be noted,
-        but generally this is the case). Larger transactions amortize per-packet 
+        but generally this is the case). Larger transactions amortize per-packet
         overhead and generally achieve higher bandwidth.
     - q: How should I interpret the sweep charts?
       a: >
@@ -54,7 +54,7 @@ universal:
         different number of transactions, grid size, or NoC index). The x-axis is the
         swept parameter, and the y-axis is the measured bandwidth or latency.
         Look for where lines plateau (hitting a hardware limit) or diverge (one
-        config outperforming another). 
+        config outperforming another).
     - q: Why does bandwidth tend to plateau at larger transaction sizes?
       a: >
         Data movement performance is capped by the NoC's maximum throughput.
@@ -104,7 +104,7 @@ groups:
         a: >
           It measures the NoC read bandwidth and latency when a single Tensix core issues
           async_read calls to pull data from every other Tensix core's L1 memory. Here we multiply
-          the number of transactions per core by number of cores on the board to get the total 
+          the number of transactions per core by number of cores on the board to get the total
           number of transactions for bandwidth calculation.
 
   one_to_all:
@@ -223,7 +223,7 @@ groups:
       - q: What is the difference between the Multi Interleaved test variants?
         a: >
           Tensix cores run either a reader or writer kernel (or both if not specified) in this set of tests.
-          Thus, the read test has all cores reading from DRAM, the write test has all cores writing to DRAM, 
+          Thus, the read test has all cores reading from DRAM, the write test has all cores writing to DRAM,
           and the combined sizes test has cores doing both. Grid sweep tests vary the number of participating
           Tensix cores, rather than using the entire grid.
       - q: What is the meaning of riscv_0 and riscv_1 in the Multi Interleaved test?
@@ -429,8 +429,8 @@ tags:
           Multi-core tests run multiple kernels on different Tensix cores simultaneously.
           Each kernel is responsible for its own data movement, and the reported bandwidth
           is the median of all cores. Some tests will instead report combined bandwidth,
-          which is the total number of bytes transferred by all cores divided by the total 
-          number of cycles over the entire test and represents the aggregate performance of 
+          which is the total number of bytes transferred by all cores divided by the total
+          number of cycles over the entire test and represents the aggregate performance of
           the system.
 
   virtual_channels:
